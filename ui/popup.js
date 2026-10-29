@@ -48,9 +48,23 @@ function render(s) {
     const t = u.total
     $('sum').innerHTML = `<span>${period === 'today' ? '今日' : '近 7 天'}消费 <span class="meta">${t.calls} 次 · ${tok(t.input + t.output + t.cacheRead + t.cacheWrite)} tokens</span></span><span class="cost">${m(t.cost)}</span>`
     const max = Math.max(...u.models.map((x) => x.cost), 1e-9)
-    $('list').innerHTML = u.models.length ? u.models.map((x) => `
+    $('list').innerHTML = u.models.length ? u.models.map((x) => {
+      // 总用量：本模型在当前统计范围内全部 token（输入+输出+缓存读+缓存写，与汇总口径一致）
+      const used = (x.input || 0) + (x.output || 0) + (x.cacheRead || 0) + (x.cacheWrite || 0)
+      // 缓存命中率：命中缓存的读取 /（未命中输入 + 缓存读取）
+      const hitBase = (x.input || 0) + (x.cacheRead || 0)
+      const hit = hitBase > 0 ? (x.cacheRead || 0) / hitBase * 100 : null
+      const hitTxt = hit == null ? '命中 —' : '命中 ' + (hit >= 10 ? hit.toFixed(0) : hit.toFixed(1)) + '%'
+      return `
       <div class="row">
-        <div class="r1"><span class="name" title="${esc(x.id)}">${esc(x.name)}</span><span class="rc">${m(x.cost)}</span></div>
+        <div class="r1">
+          <span class="name" title="${esc(x.id)}">${esc(x.name)}</span>
+          <span class="rtail">
+            <span class="metric" title="本模型总用量（输入+输出+缓存，当前范围）">Σ ${tok(used)}</span>
+            <span class="metric hit" title="缓存命中率 = 缓存读 /（输入 + 缓存读）">${hitTxt}</span>
+            <span class="rc">${m(x.cost)}</span>
+          </span>
+        </div>
         <div class="bar"><i style="width:${(x.cost / max * 100).toFixed(1)}%"></i></div>
         <div class="r2">
           <span>${x.calls} 次${x.errors ? ` · ${x.errors} 失败` : ''}</span>
@@ -60,7 +74,7 @@ function render(s) {
           ${x.cacheWrite ? `<span>缓存写 <b>${tok(x.cacheWrite)}</b></span>` : ''}
           ${x.unpriced ? `<span>${x.unpriced} 次未计价</span>` : ''}
         </div>
-      </div>`).join('') : '<div class="empty">这段时间没有调用</div>'
+      </div>` }).join('') : '<div class="empty">这段时间没有调用</div>'
 
     // 多把 key 时再按 key 分开看
     const keys = s.keys || []
