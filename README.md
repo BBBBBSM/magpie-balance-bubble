@@ -4,6 +4,21 @@
 
 它只**读取**本机 Magpie 的缓存接口（`/v1/magpie/quotas` 与 `/v1/magpie/usage`），不拦截、不代理、不修改你的任何请求——纯只读的旁观者。
 
+## 界面预览
+
+<table>
+<tr>
+<td align="center"><img src="docs/screenshots/balance.png" width="220"><br><sub>气泡常驻显示当前供应商余额与今日累计</sub></td>
+<td align="center"><img src="docs/screenshots/turn-cost.png" width="220"><br><sub>每轮对话结束弹出本次消耗</sub></td>
+<td align="center"><img src="docs/screenshots/multi-turn.png" width="220"><br><sub>同一时刻多个对话合并显示</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="docs/screenshots/detail-today.png" width="300"><br><sub>详情页 · 今日用量与花费明细</sub></td>
+<td align="center"><img src="docs/screenshots/detail-turns.png" width="300"><br><sub>详情页 · 最近对话消耗记录</sub></td>
+<td align="center"><img src="docs/screenshots/flip.png" width="220"><br><sub>镜像翻转（角色换到另一侧）</sub></td>
+</tr>
+</table>
+
 ## 前置条件（务必先在 Magpie 里配好，否则挂件没数据可显示）
 
 挂件本身不连上游、不算钱，所有数据都来自 Magpie。使用前请确认你的 Magpie 已经：
