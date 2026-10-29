@@ -1,0 +1,14 @@
+# 依赖与构建产物
+node_modules/
+dist/
+out/
+
+# 备份与临时文件
+*.bak
+*.log
+.st/
+
+# 系统/快捷方式
+启动余额气泡.lnk
+Thumbs.db
+.DS_Store

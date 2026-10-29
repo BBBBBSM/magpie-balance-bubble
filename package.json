@@ -1,0 +1,46 @@
+{
+  "name": "magpie-balance-bubble",
+  "version": "0.1.0",
+  "private": true,
+  "description": "桌面常驻余额气泡：读取 Magpie 本机网关的供应商余额与用量",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable --x64"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.bbbbbsm.magpie-balance-bubble",
+    "productName": "Magpie 鲸鲸余额挂件",
+    "copyright": "Copyright © 2026 BBBBBSM",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "turns.js",
+      "ui/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "assets/icon.png",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "Magpie-Whale-Bubble-${version}-portable.exe"
+    }
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,34 @@
+/* 尺寸与配色沿用 dsh-whale-widget：窗口 = 挂件盒，1 单位 = 盒宽 / 1026 */
+html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; user-select: none; -webkit-user-select: none; }
+body { font-family: "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif; }
+.root { position: fixed; inset: 0; --u: calc(100vw / 1026); }
+.body { position: absolute; inset: 0; transform-origin: 50% 100%; transition: transform .22s cubic-bezier(.34,1.56,.64,1); }
+.body.pressed { transform: scale(1.04, .9); }
+/* 镜像：整体水平翻转，泡泡里的文字再翻回来 */
+.root.flip { transform: scaleX(-1); }
+.root.flip .text { transform: translate(-50%, -50%) scaleX(-1); }
+
+.img { position: absolute; right: 0; bottom: 0; width: 59.45%; height: 59.45%; object-fit: contain; object-position: right bottom; -webkit-user-drag: none; cursor: grab; }
+.dragging .img { cursor: grabbing; }
+
+.pop { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 1026 / 700; pointer-events: none; }
+.pop.open { pointer-events: auto; cursor: pointer; }
+.pop svg { display: block; width: 100%; height: 100%; }
+.pop .bshape, .pop .b1, .pop .b2 { opacity: 0; transform: scale(.7); transform-box: fill-box; transform-origin: 50% 50%; transition: opacity .2s ease, transform .2s ease; }
+.pop.open .bshape, .pop.open .b1, .pop.open .b2 { opacity: 1; transform: none; }
+.pop .b1 { transition-delay: .08s; }
+.pop .b2 { transition-delay: .16s; }
+.pop.open .b2 { transition-delay: 0s; }
+.pop.open .b1 { transition-delay: .13s; }
+.pop.open .bshape { transition-delay: .26s; }
+
+.text { position: absolute; left: 44.25%; top: 36%; width: 66%; height: 64%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #536ba9; line-height: 1.15; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .16s ease; }
+.pop.open .text { opacity: 1; transition: opacity .16s ease .36s; }
+.label { font-size: calc(var(--u) * 66); font-weight: 600; letter-spacing: .06em; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.amount { font-size: calc(var(--u) * 128); font-weight: 800; line-height: 1.05; color: #203170; font-variant-numeric: tabular-nums; }
+.amount.low { color: #e0433f; }
+.amount.cost { color: #e0433f; }
+.amount.gain { color: #2e9d57; }
+.hint { font-size: calc(var(--u) * 56); color: #9fb0d9; letter-spacing: .02em; margin-top: calc(var(--u) * 9); max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.amount.bump { animation: bump .5s ease; }
+@keyframes bump { 0% { transform: scale(1); } 30% { transform: scale(.9); color: #e0433f; } 100% { transform: scale(1); } }

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self'; media-src 'self'">
+<link rel="stylesheet" href="bubble.css">
+</head>
+<body>
+<div class="root" id="root">
+  <div class="body" id="body">
+    <div class="pop" id="pop">
+      <!-- 外形逐字照抄 dsh-whale-widget 的经典泡泡（FRAME_CLASSIC_MARKUP） -->
+      <svg viewBox="0 0 1026 700" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <path class="bshape" fill="#FFFFFF" stroke="#203170" stroke-width="18" stroke-linejoin="round" stroke-linecap="round" d="M 827 248 A 373 232 0 1 0 81 246 A 373 232 0 0 0 301 465 A 57 32 10 0 0 413 484 A 373 232 0 0 0 827 248 Z"/>
+        <ellipse class="b1" cx="352" cy="561" rx="37.5" ry="26" fill="#FFFFFF" stroke="#203170" stroke-width="18"/>
+        <ellipse class="b2" cx="442" cy="646" rx="24.5" ry="18" fill="#FFFFFF" stroke="#203170" stroke-width="18"/>
+      </svg>
+      <div class="text">
+        <div class="label" id="label">余额</div>
+        <div class="amount" id="amount">—</div>
+        <div class="hint" id="hint">今日 —</div>
+      </div>
+    </div>
+    <img class="img" id="img" src="../assets/role.png" alt="" draggable="false">
+  </div>
+</div>
+<script src="bubble.js"></script>
+</body>
+</html>

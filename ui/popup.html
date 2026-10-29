@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="card" id="card">
+  <div class="head">
+    <div class="title"><span id="provider">—</span><span class="bal" id="balance"></span></div>
+    <div class="acts"><button class="cur" id="currency" title="切换计价币种">¥</button><button class="close" id="refresh" title="立即刷新余额">⟳</button><button class="close" id="close" title="关闭">×</button></div>
+  </div>
+  <div class="accts" id="accts"></div>
+  <div class="tabs">
+    <button class="tab on" data-p="today">今日</button>
+    <button class="tab" data-p="week">近 7 天</button>
+    <button class="tab" data-p="turns">最近对话</button>
+  </div>
+  <div class="sum" id="sum"></div>
+  <div class="list" id="list"></div>
+  <div class="foot" id="foot"></div>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
